@@ -72,6 +72,10 @@ public class ImageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    public void setImgView(){
+
+    }
+
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
