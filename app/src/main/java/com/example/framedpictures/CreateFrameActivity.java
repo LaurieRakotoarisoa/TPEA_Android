@@ -21,7 +21,7 @@ public class CreateFrameActivity extends FragmentActivity {
     FragmentManager fragManag;
     Fragment fr1;
 
-    public static final int PICK_IMAGE = 1;
+    public static final int PICK_IMAGE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,8 @@ public class CreateFrameActivity extends FragmentActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data)
     {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             Bitmap bitmap = null;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());

@@ -72,10 +72,6 @@ public class ImageFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void setImgView(){
-
-    }
-
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -93,7 +89,7 @@ public class ImageFragment extends Fragment implements View.OnClickListener {
                         "com.example.framedpictures.fileprovider",
                         photoFile);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(intent,REQUEST_TAKE_PHOTO);
+                startActivityForResult(intent,REQUEST_IMAGE_CAPTURE);
             }
         }
 
