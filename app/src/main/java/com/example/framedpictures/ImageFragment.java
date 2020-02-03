@@ -12,16 +12,24 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -166,6 +174,56 @@ public class ImageFragment extends Fragment implements View.OnClickListener {
                     });
             alertDialog.show();
         }
+    }
+    public void addText(View view){
+        final EditText newtext = new EditText(getContext());
+
+
+        newtext.setHint("add text ici...");
+        newtext.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        newtext.setFocusableInTouchMode(true);
+
+        //set layout
+        final ViewGroup.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+        newtext.setLayoutParams(layoutParams);
+
+
+        // seulement une line
+        newtext.setInputType(InputType.TYPE_CLASS_TEXT);
+
+
+
+        newtext.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    // clear focus
+                    newtext.clearFocus();
+                }
+                return false;
+
+            }
+        });
+
+        newtext.setTypeface(Typeface.DEFAULT_BOLD);
+        newtext.setTextSize(20);
+
+
+        newtext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+
+                return false;
+            }
+        });
+
+        frameLayout.addView(newtext);
+
+
+
     }
 
 }

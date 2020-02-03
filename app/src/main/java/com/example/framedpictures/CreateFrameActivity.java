@@ -12,9 +12,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -33,6 +36,10 @@ public class CreateFrameActivity extends FragmentActivity {
     SeekBar seekBarRed;
     SeekBar seekBarGreen;
     Fragment f;
+
+    // button
+    Button btn;
+    FrameLayout fLayout;
     int red;
     int green;
     int blue;
@@ -56,6 +63,10 @@ public class CreateFrameActivity extends FragmentActivity {
         ImageView frameView = f.getView().findViewById(R.id.img_frame);
         imageCaptured = f.getView().findViewById(R.id.img_capture);
         frameView.setImageResource(resource);
+
+        //button add text
+        btn = findViewById(R.id.btnAddText);
+        fLayout = f.getView().findViewById (R.id.frame);
 
         seekBarBlue = findViewById(R.id.seekblue);
         seekBarBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -136,6 +147,14 @@ public class CreateFrameActivity extends FragmentActivity {
 
     public void saveImage(View view){
         ((ImageFragment) f).saveFrame(view);
+    }
+
+    public void addText(View view){
+          ((ImageFragment) f).addText(view);
+
+
+
+
     }
 
 
