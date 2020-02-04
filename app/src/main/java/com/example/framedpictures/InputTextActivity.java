@@ -46,14 +46,11 @@ public class InputTextActivity extends AppCompatActivity {
     }
 
     public void inputText(View view){
-        //SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
-       // SharedPreferences.Editor prefsEditor = myPrefs.edit();
-        //prefsEditor.putString("MY_NAME", value);
-        //prefsEditor.commit();
+        SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
+        SharedPreferences.Editor prefsEditor = myPrefs.edit();
+        prefsEditor.putString("MY_NAME", editText.getText().toString());
+        prefsEditor.commit();
 
-        Intent intent = new Intent();
-        intent.putExtra("editTextValue ",editText.getText().toString());
-        setResult(RESULT_OK,intent);
         finish();
 
     }
