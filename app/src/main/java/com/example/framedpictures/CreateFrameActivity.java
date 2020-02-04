@@ -150,7 +150,9 @@ public class CreateFrameActivity extends FragmentActivity {
     }
 
     public void addText(View view){
-          ((ImageFragment) f).addText(view);
+      //   ((ImageFragment) f).addText(view);
+        Intent intent = new Intent(getApplicationContext(),InputTextActivity.class);
+        startActivity(intent);
 
 
 

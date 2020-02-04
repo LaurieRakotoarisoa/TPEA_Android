@@ -8,6 +8,11 @@
     android:id="@+id/frame"
     android:background="@android:color/darker_gray">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/root">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,5 +28,5 @@
         android:src="@mipmap/roundedframe"
         android:scaleType="fitXY"/>
 
-
+    </RelativeLayout>
 </FrameLayout>

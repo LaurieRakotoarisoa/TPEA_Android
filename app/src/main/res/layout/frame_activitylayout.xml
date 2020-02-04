@@ -9,6 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,24 +75,34 @@
             </LinearLayout>
 
         </LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnAddText"
-            android:onClick="addText"
-            android:text="add Text"
-            />
+
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="54dp"
             android:layout_height="match_parent"
-            android:src="@android:drawable/ic_menu_save"
-            android:layout_weight="1"
-            android:onClick="saveImage"/>
 
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:onClick="saveImage"
+            android:src="@android:drawable/ic_menu_save" />
 
+        <Button
+            android:id="@+id/btnAddText"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:onClick="addText"
+            android:text="add Text" />
 
+        <Button
+            android:id="@+id/btnItalic"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:onClick="addText"
+            android:text="Italic" />
 
 
 
     </LinearLayout>
+
+
+    </HorizontalScrollView>
 </LinearLayout>
