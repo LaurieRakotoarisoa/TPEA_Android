@@ -98,14 +98,7 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if(resultCode == RESULT_OK) {
-                strEditText = data.getStringExtra("editTextValue");
-            }
-        }
-
-
-
+    
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bitmap bitmap = null;
 
@@ -209,14 +202,10 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
     }
     public void addText(View view){
 
-
-
         newtext = new TextView( getContext());
 
-
       newtext.setHint("add text here");
-        newtext.setText(strEditText);
-
+     
        // newtext.setImeOptions(EditorInfo.IME_ACTION_DONE);
         //newtext.setFocusableInTouchMode(false);
 
@@ -226,11 +215,6 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
                 ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
 
         newtext.setLayoutParams(layoutParams);
-
-
-        // seulement une line
-        //newtext.setInputType(InputType.TYPE_CLASS_TEXT);
-
 
 
 
@@ -257,7 +241,10 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
         int action = motionEvent.getAction();
         switch(action & MotionEvent.ACTION_MASK) {
             case (MotionEvent.ACTION_DOWN) :
-
+                SharedPreferences myPrefs = getActivity().getSharedPreferences("myPrefs", 0);
+                String prefName = myPrefs.getString("MY_NAME", null);
+                newtext.setText(prefName);
+                
                 break;
             case (MotionEvent.ACTION_MOVE) :
                 FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(view.getLayoutParams());
