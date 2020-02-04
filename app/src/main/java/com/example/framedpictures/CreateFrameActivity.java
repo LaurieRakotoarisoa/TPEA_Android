@@ -69,14 +69,6 @@ public class CreateFrameActivity extends FragmentActivity  {
         sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(sizeAdapter);
 
-
-
-
-
-
-
-
-
         seekBarBlue = findViewById(R.id.seekblue);
         seekBarBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -167,32 +159,13 @@ public class CreateFrameActivity extends FragmentActivity  {
 
 
         Intent intent = new Intent(getApplicationContext(),InputTextActivity.class);
-     // startActivity(intent);
-        startActivityForResult(intent,1);
-
-
-           // SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", 0);
-            //String prefName = myPrefs.getString("MY_NAME", null);
+      startActivity(intent);
+      
 
                 ((ImageFragment) f).addText(view);
 
-
-
-
-
     }
-    /*
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                strEditText = data.getStringExtra("editTextValue");
-                setStrEditText();
-            }
-        }
-    }
-
-*/
+  
 
     public void setStrEditText(){
         ((ImageFragment) f).setText(strEditText);
@@ -206,14 +179,6 @@ public class CreateFrameActivity extends FragmentActivity  {
     public void  setBold(View view){
         ((ImageFragment) f).setBold(view);
     }
-
-    /*
-    @Override
-    public void startIntent(Intent i) {
-        startActivityForResult(i,1);
-    }
-    */
-
 
 
     // String t = parent.getItemAtPosition(position).toString();
