@@ -9,15 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="237dp"
@@ -73,7 +73,6 @@
                     android:max="255" />
 
             </LinearLayout>
-
         </LinearLayout>
 
         <ImageView
@@ -94,14 +93,28 @@
 
         <Button
             android:id="@+id/btnItalic"
-            android:layout_width="103dp"
+            android:layout_width="33dp"
             android:layout_height="wrap_content"
-            android:onClick="addText"
-            android:text="Italic" />
+            android:onClick="setItalic"
+            android:text="@string/I"
+            android:textStyle="italic"
+            />
+        <Button
+            android:id="@+id/btnBold"
+            android:layout_width="33dp"
+            android:layout_height="wrap_content"
+            android:onClick="setBold"
+            android:text="@string/B"
+            android:textStyle="bold"/>
 
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            />
 
+        </LinearLayout>
 
-    </LinearLayout>
 
 
     </HorizontalScrollView>

@@ -1,48 +1,42 @@
 package com.example.framedpictures;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LightingColorFilter;
-import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
-
-public class CreateFrameActivity extends FragmentActivity {
+public class CreateFrameActivity extends FragmentActivity  {
     ImageView imageCaptured;
     FragmentManager fragmentManager;
     SeekBar seekBarBlue;
     SeekBar seekBarRed;
     SeekBar seekBarGreen;
     Fragment f;
+    String strEditText;
 
     // button
     Button btn;
     FrameLayout fLayout;
+    Spinner spinner;
+
+
     int red;
     int green;
     int blue;
+
+
 
     public static final int PICK_IMAGE = 2;
 
@@ -67,6 +61,21 @@ public class CreateFrameActivity extends FragmentActivity {
         //button add text
         btn = findViewById(R.id.btnAddText);
         fLayout = f.getView().findViewById (R.id.frame);
+         strEditText = "";
+
+        spinner = findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> sizeAdapter = ArrayAdapter.createFromResource(this, R.array.numbers,
+        android.R.layout.simple_spinner_item);
+        sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(sizeAdapter);
+
+
+
+
+
+
+
+
 
         seekBarBlue = findViewById(R.id.seekblue);
         seekBarBlue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -149,21 +158,60 @@ public class CreateFrameActivity extends FragmentActivity {
         ((ImageFragment) f).saveFrame(view);
     }
 
+
+    /**
+     * ajouter une texte dans la photo
+     * @param view
+     */
     public void addText(View view){
-      //   ((ImageFragment) f).addText(view);
         Intent intent = new Intent(getApplicationContext(),InputTextActivity.class);
-        startActivity(intent);
+      startActivity(intent);
+        startActivityForResult(intent,1);
+
+
+           // SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", 0);
+            //String prefName = myPrefs.getString("MY_NAME", null);
+
+                ((ImageFragment) f).addText(view);
+
 
 
 
 
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                strEditText = data.getStringExtra("editTextValue");
+                setStrEditText();
+            }
+        }
+    }
+
+    public void setStrEditText(){
+        ((ImageFragment) f).setText(strEditText);
+
+    }
+
+    public void setItalic(View view){
+        ((ImageFragment) f).setItalic(view);
+    }
+
+    public void  setBold(View view){
+        ((ImageFragment) f).setBold(view);
+    }
+
+    /*
+    @Override
+    public void startIntent(Intent i) {
+        startActivityForResult(i,1);
+    }
+    */
 
 
 
-
-
-
+    // String t = parent.getItemAtPosition(position).toString();
 
 }
 

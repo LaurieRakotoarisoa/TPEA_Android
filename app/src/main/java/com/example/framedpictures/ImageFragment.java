@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -65,9 +66,10 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
     String currentPhotoPath;
     Uri photoURI;
     FrameLayout frameLayout;
-    EditText newtext = null;
+    TextView newtext = null;
     private int _xDelta;
     private int _yDelta;
+    String strEditText;
 
     private GestureDetector gestureDetector ;
 
@@ -77,7 +79,7 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        strEditText = "";
         newtext = null;
         gestureDetector = new GestureDetector(getContext(),this);
     }
@@ -96,6 +98,14 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                strEditText = data.getStringExtra("editTextValue");
+            }
+        }
+
+
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bitmap bitmap = null;
 
@@ -198,12 +208,28 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
         }
     }
     public void addText(View view){
-        newtext = new EditText(getContext());
 
 
-        newtext.setHint("add text ici...");
-        newtext.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        newtext.setFocusableInTouchMode(true);
+
+
+/*
+        Intent intent = new Intent( getActivity(),InputTextActivity.class);
+        //  startActivity(intent);
+        ((MyInterface)getActivity()).startIntent(intent);
+
+        //  SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+       // String prefName = myPrefs.getString("MY_NAME", "nothing");
+*/
+
+
+        newtext = new TextView( getContext());
+
+
+      newtext.setHint("add text here");
+        newtext.setText(strEditText);
+
+       // newtext.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        //newtext.setFocusableInTouchMode(false);
 
         //set layout
 
@@ -214,27 +240,15 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
 
 
         // seulement une line
-        newtext.setInputType(InputType.TYPE_CLASS_TEXT);
+        //newtext.setInputType(InputType.TYPE_CLASS_TEXT);
 
 
 
-        newtext.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
-                if(actionId == EditorInfo.IME_ACTION_DONE){
-                    // clear focus
-                    newtext.clearFocus();
-                }
-
-                return false;
-
-            }
-        });
         newtext.setOnTouchListener(this);
 
         newtext.setTypeface(Typeface.DEFAULT_BOLD);
-        newtext.setTextSize(20);
+        newtext.setTextSize(30);
 
 
         frameLayout.addView(newtext);
@@ -315,6 +329,18 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
+    }
+
+    public void setItalic(View view){
+        newtext.setTypeface(null,Typeface.ITALIC);
+    }
+
+    public void  setBold(View view){
+        newtext.setTypeface(null,Typeface.BOLD);
+    }
+    public void setText(String text){
+        strEditText = text;
+        newtext.setText(text);
     }
 
 

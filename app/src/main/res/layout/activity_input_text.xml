@@ -13,6 +13,9 @@
         android:id="@+id/input"
         android:layout_gravity="center"
         android:textSize="30dp"
+        android:focusableInTouchMode="true"
+        android:imeOptions="actionDone"
+        android:inputType="text"
 
         />
     <LinearLayout
