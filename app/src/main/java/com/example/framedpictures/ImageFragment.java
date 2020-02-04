@@ -211,17 +211,6 @@ public class ImageFragment extends Fragment implements View.OnClickListener,
 
 
 
-
-/*
-        Intent intent = new Intent( getActivity(),InputTextActivity.class);
-        //  startActivity(intent);
-        ((MyInterface)getActivity()).startIntent(intent);
-
-        //  SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
-       // String prefName = myPrefs.getString("MY_NAME", "nothing");
-*/
-
-
         newtext = new TextView( getContext());
 
 

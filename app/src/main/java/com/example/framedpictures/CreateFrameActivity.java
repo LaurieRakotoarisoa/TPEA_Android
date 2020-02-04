@@ -164,8 +164,10 @@ public class CreateFrameActivity extends FragmentActivity  {
      * @param view
      */
     public void addText(View view){
+
+
         Intent intent = new Intent(getApplicationContext(),InputTextActivity.class);
-      startActivity(intent);
+     // startActivity(intent);
         startActivityForResult(intent,1);
 
 
@@ -179,6 +181,7 @@ public class CreateFrameActivity extends FragmentActivity  {
 
 
     }
+    /*
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
@@ -188,6 +191,8 @@ public class CreateFrameActivity extends FragmentActivity  {
             }
         }
     }
+
+*/
 
     public void setStrEditText(){
         ((ImageFragment) f).setText(strEditText);
